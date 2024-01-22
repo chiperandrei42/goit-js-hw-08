@@ -11,10 +11,16 @@ const email = document.querySelector("input[name='email']");
     localStorage.setItem('feedback-form-state', JSON.stringify(savedInfo));    
   }), 500);
 
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  form.reset();
+  localStorage.removeItem('feedback-form-state');
+});
+
   const completedInfo = localStorage.getItem('feedback-form-state');
 
   if (completedInfo) {
     const parsedInfo = JSON.parse(completedInfo);
     email.value = parsedInfo.email;
     message.value = parsedInfo.message;
-    };
+};
